@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://jitpack.io' }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://192.168.40.51:8081/repository/maven-releases/'
+        }
+    }
+}
+dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "3D Wave Wallpapers Maker"
+include ':app'
+include ':sunrise'
+include ':DexEncrypt-core'

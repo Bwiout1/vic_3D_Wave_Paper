@@ -1,0 +1,24 @@
+//本插件可同时应用于application & library，目前仅支持混淆本模块的文件
+apply plugin: 'com.vt.allatori-plugin'
+
+allatoriPlugin{
+    pluginEnable = true
+
+    stringEncrypt = false //默认为true(allatori)
+
+    //todo: 修改路径与类名
+    keepClass = [ //左边为要keep的class,右边分别为该class中要keep的field与method,顺序不可颠倒
+          "com.game.zxyz.ROXY" : null,
+          "com.game.zxyz.Efghijk" : [["a"], ["*"]]
+    ]
+
+    //可自定义config.xml来实现复杂的keep规则
+//    xmlPath = "D:/0/AllatoriCrack/demo/advanced_config_example.xml" //绝对路径
+//    xmlPath = "xmlRelTest.xml" //相对路径,相对于当前moudle
+
+    exempt = [
+            "class{^android}",
+            "class{^kotlin}",
+            "class{^com/google}",
+    ]
+}

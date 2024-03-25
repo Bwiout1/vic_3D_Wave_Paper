@@ -1,0 +1,44 @@
+repositories {
+    //Mintegral
+    maven {
+        url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+    }
+
+    //Tapjoy
+//    maven {
+//        url "https://sdk.tapjoy.com/"
+//    }
+
+    //Ironsource
+//    maven {
+//        url "https://android-sdk.is.com/"
+//    }
+
+    //Pangle
+    maven {
+        url "https://artifact.bytedance.com/repository/pangle"
+    }
+
+}
+
+dependencies {
+    //Fairbid
+    api "com.fyber:fairbid-sdk:3.40.0"
+
+    // Tapjoy
+//    api 'com.tapjoy:tapjoy-android-sdk:13.0.0'
+
+    // ironSource
+//    api 'com.ironsource.sdk:mediationsdk:7.2.4.1'
+
+    api 'com.mbridge.msdk.oversea:newinterstitial:16.4.61'
+    api 'com.mbridge.msdk.oversea:mbnativeadvanced:16.4.61'
+    api 'com.mbridge.msdk.oversea:mbbid:16.4.61'
+
+
+
+    //Pangle
+    api 'com.pangle.global:ads-sdk:5.3.0.4'
+//    api 'com.google.android.gms:play-services-base:latest.release'
+    api 'com.google.android.gms:play-services-ads-identifier:latest.release'
+}

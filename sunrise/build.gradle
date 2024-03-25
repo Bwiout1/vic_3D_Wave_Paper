@@ -1,0 +1,151 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'stringfog'
+}
+
+//apply from: 'topon.gradle'
+apply from: 'fairbid.gradle'
+
+
+stringfog {
+    enable true
+    implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
+}
+
+static def randomStr(Integer min, Integer max){
+    def characters = ('abcdefghijklmnopqrstuvwxyz' as CharSequence)
+    def randomString = ""
+    def random = new Random()
+    def len = random.nextInt(max - min + 1) + min
+
+    while (randomString.length() < len) {
+        randomString += characters[random.nextInt(characters.size())]
+    }
+
+    return randomString
+}
+
+static def randomActName(){
+    def nameList = ["Main", "Home", "Start", "Setting", "Page", "Edit", "First", "Second", "My", "Save"]
+    nameList.shuffle()
+    return nameList.get(0)
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 23  //androidx.security提供的EncryptSharedPreference只支持23+
+        targetSdk 33
+        versionCode 10056
+        versionName "5.6"
+
+        //todo: SDK.2.1.replace fb_app_key & fb_client_token
+        manifestPlaceholders = [
+                fb_app_key     : "863517492146911",
+                fb_client_token: "be222da7c80aa0630091d78bafcd6958",
+                random_prefix  : randomStr(3, 7),
+                act_name       : randomActName()
+        ]
+
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags ""
+//                arguments "-DOLLVM_SWITCH=${rootProject.ext.OLLVM_SWITCH}" //ollvm switch
+//            }
+//
+//            ndk {
+//                abiFilters("armeabi-v7a", "arm64-v8a")
+//                ndkVersion rootProject.ext.NDK_VER
+//            }
+//        }
+    }
+
+//    externalNativeBuild {
+//        cmake {
+//            path "src/main/cpp/CMakeLists.txt"
+//            version "3.18.1"
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources false
+            zipAlignEnabled true
+
+            consumerProguardFiles "$rootDir/config/proguard-pro/optimize.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/android.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/androidx.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/webview.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/okio.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/okhttp3.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/glide.pro"
+
+            consumerProguardFiles "$rootDir/config/proguard-pro/ironsource.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/pangle.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/tapjoy.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/unityads.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/mintegral.pro"
+
+            consumerProguardFiles "$rootDir/config/proguard-pro/flurry.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/facebook.pro"
+            consumerProguardFiles "$rootDir/config/proguard-pro/appmetrica.pro"
+
+            consumerProguardFiles "$rootDir/config/proguard-pro/kotlin.pro"
+
+            consumerProguardFiles 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-rules.pro'
+
+            ndk {
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    //SharedPreferences-encrypt
+    implementation "androidx.security:security-crypto:1.0.0"
+
+    //StringFog
+    implementation 'com.github.megatronking.stringfog:xor:4.0.1'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    //WorkManager
+    implementation "androidx.work:work-runtime:2.8.0"
+    implementation "androidx.work:work-runtime-ktx:2.8.0"
+
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+
+    //flurry
+    api 'com.flurry.android:analytics:latest.release'
+//    api 'com.flurry.android:nativeCrash:latest.release'
+
+    //facebook
+//    2022/9/28 v15.0.0 can't pass build
+    api 'com.facebook.android:facebook-android-sdk:16.0.0'
+//    api 'com.facebook.android:facebook-android-sdk:latest.release'
+
+    //AppMetrica
+    api 'com.yandex.android:mobmetricalib:latest.release'
+//    api 'com.yandex.android:mobmetricalib-ndk-crashes:latest.release'
+
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+
+    compileOnly(project(path: ':DexEncrypt-core'))
+}

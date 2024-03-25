@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply from: "fyberResAndVer.gradle"
+
+android {
+    namespace 'com.takeoff.celebs.qwer'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.takeoff.celebs.qwer"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs ("en", "de", "es", "fr", "in", "ja", "ko", "ms", "pt", "th")
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('./64ffc7518bfd4.jks')
+            storePassword '64ffc7518bfd4'
+            keyAlias 'key0'
+            keyPassword '64ffc7518bfd4'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            ndk {
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    implementation project(path: ':sunrise')
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

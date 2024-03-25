@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">3D Wave Wallpapers Maker</string>
+    <string name="authorization_succeeded">인증 성공!</string>
+    <string name="checkPermission_Authorization_succeeded">checkPermission: 승인 성공!</string>
+    <string name="please_open_the_relevant_permissions_otherwise_the_application_cannot_be_used_normally">해당 권한을 열어주세요. 그렇지 않으면 애플리케이션을 정상적으로 사용할 수 없습니다!</string>
+    <string name="wallpaper_description">asdfghh</string>
+    <string name="wallpaper_set_successfully">벽지 설정 성공</string>
+    <string name="delete">삭제</string>
+    <string name="are_you_sure_want_to_exit">정말 종료하시겠습니까?</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="classification">분류</string>
+    <string name="_3d_interactive">#3D 인터랙티브</string>
+    <string name="parallax_3d">#시차 3D</string>
+    <string name="fire">#불</string>
+    <string name="parallax_2d">#시차 2D</string>
+    <string name="love">#사랑</string>
+    <string name="gallery">갤러리</string>
+    <string name="apply">적용</string>
+    <string name="wallpaper">배경화면</string>
+</resources>

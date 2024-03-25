@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">3D Wave Wallpapers Maker</string>
+    <string name="authorization_succeeded">Autorização bem-sucedida!</string>
+    <string name="checkPermission_Authorization_succeeded">checkPermission: Autorização bem-sucedida!</string>
+    <string name="please_open_the_relevant_permissions_otherwise_the_application_cannot_be_used_normally">Abra as permissões relevantes, caso contrário, o aplicativo não poderá ser usado normalmente!</string>
+    <string name="wallpaper_description">asdfghh</string>
+    <string name="wallpaper_set_successfully">Papel de parede definido com sucesso</string>
+    <string name="delete">Excluir</string>
+    <string name="are_you_sure_want_to_exit">Tem certeza que deseja sair?</string>
+    <string name="yes">SIM</string>
+    <string name="no">NÃO</string>
+    <string name="classification">Classificação</string>
+    <string name="_3d_interactive">#3D interativo</string>
+    <string name="parallax_3d">#Parallax 3D</string>
+    <string name="fire">#Fire</string>
+    <string name="parallax_2d">#Parallax 2D</string>
+    <string name="love">#Love</string>
+    <string name="gallery">Galeria</string>
+    <string name="apply">Aplicar</string>
+    <string name="wallpaper">Papel de parede</string>
+</resources>

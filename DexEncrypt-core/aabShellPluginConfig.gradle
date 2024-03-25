@@ -1,0 +1,46 @@
+apply plugin: 'AabEncryptPlugin'
+
+static def randomKey(){
+    def characters = ('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' as CharSequence)
+    def randomString = ""
+    def random = new Random()
+
+    while (randomString.length() < 16) {
+        randomString += characters[random.nextInt(characters.size())]
+    }
+
+    return randomString
+}
+
+static def randomStr(Integer min, Integer max){
+    def characters = ('abcdefghijklmnopqrstuvwxyz' as CharSequence)
+    def randomString = ""
+    def random = new Random()
+    def len = random.nextInt(max - min + 1) + min
+
+    while (randomString.length() < len) {
+        randomString += characters[random.nextInt(characters.size())]
+    }
+
+    return randomString
+}
+
+def dexStr = randomStr(3, 5)
+println("dexStr: ${dexStr}")
+def expNameStr = randomStr(1, 3)
+println("expName: ${expNameStr}")
+
+dexEncrypt{
+//    pluginEnable = false //是否启用插件(默认开启)
+    verbose = true
+
+//todo: 修改application(改为你自己的Application全路径)
+
+//    appModule = 'app' //default val: "app"
+    application = "com.takeoff.celebs.qwer.AppBase"  //原Application类路径
+
+    secretKey = randomKey()     //len: 16 chars
+    dexDir = dexStr                    //加密后放入assets下的dex文件目录
+    expName = expNameStr                      //加密后dex文件扩展名
+//    libName = "abc"                  //lib的名字，当前不支持
+}

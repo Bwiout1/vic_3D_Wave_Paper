@@ -1,0 +1,18 @@
+//本插件可同时应用于application & library，目前仅支持混淆本模块的文件
+apply plugin: 'com.vt.zkm-plugin'
+
+zkmPlugin{
+    pluginEnable = true
+
+//    stringEncrypt = false //默认为true
+
+    //todo: 修改路径与类名
+    keepClass = [ //左边为要keep的class,右边分别为该class中要keep的field与method,顺序不可颠倒
+            "com.game.zxyz.ROXY" : null,
+            "com.game.zxyz.Efghijk" : [["a"], ["*"]]
+    ]
+
+    //可自定义config来实现复杂的keep&obfuscate规则
+//    configPath = "D:/0/ZKM/zkmJar/zkm/script_advanced_example" //绝对路径
+//    configPath = "configRelTest" //相对路径,相对于当前module
+}
